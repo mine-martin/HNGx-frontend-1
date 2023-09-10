@@ -12,22 +12,17 @@ function updateDayOfWeek() {
     formattedDate;
 }
 
-// Function to update and continuously count the current UTC time in "HH:MM:SS:MM" format
+// Function to update the current UTC time
 function updateUTCTime() {
-  setInterval(() => {
-    const currentTime = new Date();
-    const hours = currentTime.getUTCHours().toString().padStart(2, "0");
-    const minutes = currentTime.getUTCMinutes().toString().padStart(2, "0");
-    const seconds = currentTime.getUTCSeconds().toString().padStart(2, "0");
-    const milliseconds = currentTime
-      .getUTCMilliseconds()
-      .toString()
-      .padStart(3, "0");
-
-    const formattedTime = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+  const updateUTCTimeElement = () => {
+    const currentTime = new Date().getTime();
     document.querySelector('[data-testid="currentUTCTime"]').textContent =
-      formattedTime;
-  }, 100); // Update every 100 milliseconds (0.1 seconds)
+      currentTime;
+  };
+
+  updateUTCTimeElement(); // Update the UTC time immediately
+
+  setInterval(updateUTCTimeElement, 100); // update the UTC time every second (100 milliseconds)
 }
 
 // Call the functions to update the day of the week and UTC time
