@@ -1,25 +1,16 @@
-// Function to update the current day of the week
 function updateDayOfWeek() {
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
   const currentDate = new Date();
-  const dayOfWeek = daysOfWeek[currentDate.getUTCDay()];
-  document.querySelector('[data-testid="currentDayOfTheWeek"]').textContent =
-    dayOfWeek;
-}
+  const options = {
+    weekday: "long",
+    year: "2-digit",
+    month: "short",
+    day: "numeric",
+  };
+  const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
-// // Function to update the current UTC time
-// function updateUTCTime() {
-//     const currentTime = new Date().getTime();
-//     document.querySelector('[data-testid="currentUTCTime"]').textContent = currentTime;
-// }
+  document.querySelector('[data-testid="currentDayOfTheWeek"]').textContent =
+    formattedDate;
+}
 
 // Function to update and continuously count the current UTC time in "HH:MM:SS:MM" format
 function updateUTCTime() {
